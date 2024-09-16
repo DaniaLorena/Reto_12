@@ -162,3 +162,26 @@ print(resultado)  # Resultado: True
 > - Cantidad de vocales
 > - Cantidad de consonantes
 > - Listado de las 50 palabras que más se repiten
+
+```python
+with open ("mbox.txt") as file_object:
+    leer = file_object.read()
+
+def num_vocales (leer):
+    num_vocales : int = 0
+    vocales = "aeiouáéíóúAEIOU"
+    for letra in leer:
+        if letra in vocales:
+            num_vocales +=1
+    print (num_vocales)
+
+
+def num_consonantes (leer):
+    num_consonantes : int = 0
+    consonante :str ="bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ"
+    for letra in leer:
+        if letra in consonante:
+            num_consonantes+=1
+    print (num_consonantes)
+
+```
