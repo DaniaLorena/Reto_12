@@ -164,24 +164,63 @@ print(resultado)  # Resultado: True
 > - Listado de las 50 palabras que más se repiten
 
 ```python
+#Abrir el archivo
 with open ("mbox.txt") as file_object:
     leer = file_object.read()
 
+#Funcion que cuenta las vocales que se encuentra
 def num_vocales (leer):
     num_vocales : int = 0
     vocales = "aeiouáéíóúAEIOU"
     for letra in leer:
         if letra in vocales:
             num_vocales +=1
-    print (num_vocales)
+    print (f"El numero de vocales es: {num_vocales}")
 
 
+#Cuenta en numero de consonantes que se encuentra
 def num_consonantes (leer):
     num_consonantes : int = 0
-    consonante :str ="bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ"
+    consonante :str ="bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ" #String de consonantes en manuscula y mayuscula
     for letra in leer:
         if letra in consonante:
             num_consonantes+=1
-    print (num_consonantes)
+    print (f"El numero de vocales es: {num_consonantes}")
+
+
+#funcion que muestra las palabras que mas se repiten en el texto
+def palabras_repetidas(leer: str)-> list:
+    
+    caracter_especial: list = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',','“', '”', '\n', '\r', '\t', '-', '.', '/', '.', ';',',','<', '>', '[', ']', '{', '}', '+', '(', ')',':', ';', '<', '=', '>', '?', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+    for caracter in caracter_especial:
+        leer = leer.replace(caracter, ' ')
+
+    #Se dividen las palabras
+    palabras = leer.split()
+
+    #Se cuenta la frecuencia de las palabras
+    frecuencia_palabras = {}
+    for palabra in palabras:
+        if palabra in frecuencia_palabras:
+            frecuencia_palabras[palabra] += 1
+        else:
+            frecuencia_palabras[palabra] = 1
+
+    #Se ordenan las palabras por su frecuencia
+    palabras_ordenadas = sorted(frecuencia_palabras.items(), key=lambda item: item[1], reverse=True)
+
+    #Se separan las 50 palabras más repetidas
+    palabras_50 = []
+    for i in range (50):
+        palabras_50 += palabras_ordenadas[i]
+    print ("La 50 palabras que mas se repiten es: ")
+    print (palabras_50)
+
+
+# Texto de ejemplo (puedes reemplazarlo con el contenido de tu archivo)
+
+num_vocales (leer)
+num_consonantes (leer)
+palabras_repetidas (leer)
 
 ```
